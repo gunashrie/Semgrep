@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   semgrep:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -17,6 +17,5 @@ jobs:
       - name: Install Semgrep
         run: pip install semgrep
 
-      - name: Run Semgrep
-        run: semgrep --config p/python --config custom-rules.yml
-
+      - name: Run Semgrep with custom rules
+        run: semgrep --config ./custom-rules.yml --output-format json --output semgrep-results.json
