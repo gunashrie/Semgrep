@@ -1,0 +1,21 @@
+name: Semgrep Scan
+
+on: [push, pull_request]
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Semgrep
+        run: pip install semgrep
+
+      - name: Run Semgrep
+        run: semgrep --config p/semgrep-rules --config custom-rules.yml
