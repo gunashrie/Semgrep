@@ -1,0 +1,13 @@
+rules:
+  - id: avoid-hardcoded-passwords
+    patterns:
+      - pattern: $VAR = "$PASSWORD"
+    message: "Avoid hardcoding passwords in the code."
+    languages: [python]
+    severity: ERROR
+    metadata:
+      category: security
+      technology: python
+    metavariable-regex:
+      metavariable: $PASSWORD
+      regex: '.*password.*'
