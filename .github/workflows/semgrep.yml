@@ -18,4 +18,4 @@ jobs:
         run: pip install semgrep
 
       - name: Run Semgrep with custom rules
-        run: semgrep --config ./custom-rules.yml --output-format json --output semgrep-results.json
+        run: semgrep scan --config ./custom-rules.yml --json --output semgrep-results.json
