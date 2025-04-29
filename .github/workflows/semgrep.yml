@@ -25,7 +25,7 @@ jobs:
         run: pip install semgrep
 
       - name: Run Semgrep with custom rules
-        run: semgrep --config semgrep-rules.yml app.py --json > semgrep-results.json
+        run: semgrep --config semgrep-rules.yml app.py --json --metrics=off > semgrep-results.json
 
       - name: Analyze Semgrep results
         run: |
