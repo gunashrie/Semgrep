@@ -14,12 +14,11 @@ jobs:
     name: Run Semgrep Scan
     runs-on: ubuntu-latest
  
-    permissions:
-      contents: read
- 
-    container:
-      image: returntocorp/semgrep
- 
     steps:
       - uses: actions/checkout@v4
-      - run: semgrep --config .semgrep --error
+ 
+      - uses: returntocorp/semgrep-action@v1
+        with:
+          config: .semgrep  # This points to the local rule directory
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}  # Optional: for dashboard integration
