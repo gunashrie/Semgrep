@@ -1,12 +1,12 @@
 rules:
   - id: missing-output-encoding
     patterns:
-      - pattern: |
-          print($DATA)
-    message: "Potential XSS: Output is printed without encoding. Use html.escape()."
+      - pattern-either:
+          - pattern: print($X)
+          - pattern: print(f"...{$X}...")
+    message: "Potential XSS: Output is printed without encoding. Use html.escape() or equivalent."
     severity: ERROR
-    languages:
-      - python
+    languages: [python]
     metadata:
       category: security
       technology: web
